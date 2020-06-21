@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "620491536877",
+    "firebase_url": "https://papantulis-18598.firebaseio.com",
+    "project_id": "papantulis-18598",
+    "storage_bucket": "papantulis-18598.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:620491536877:android:4ed8e337bdfa5e5724cfe4",
+        "android_client_info": {
+          "package_name": "com.example.papantulis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "620491536877-m1cgd46c91u8o3ips602rv7tfe58j7hn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtGotivcAZ97kK1dUVAjfRQ8bPhEsy7sI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "620491536877-m1cgd46c91u8o3ips602rv7tfe58j7hn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
