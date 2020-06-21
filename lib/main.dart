@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   Container(
                     padding: EdgeInsets.fromLTRB(153.0, 192.0, 0.0, 0.0),
-                    child: Text('.',
+                    child: Text(',',
                         style: TextStyle(
                             fontSize: 80.0,
                             fontWeight: FontWeight.bold,
