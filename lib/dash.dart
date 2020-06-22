@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:papantulis/dashboard.dart';
-
-
-
-
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:papantulis/login.dart';
 
 class Beranda extends StatefulWidget {
   @override
@@ -11,10 +8,17 @@ class Beranda extends StatefulWidget {
 }
 
 class _BerandaState extends State<Beranda> {
+
+  int _selectedPage = 2;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF21BFBD),
+      bottomNavigationBar: _bottomNavigationBar(),
+      floatingActionButton: _fab(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      
+      backgroundColor: Colors.amber[700],
       body: ListView(
         children: <Widget>[
           Padding(
@@ -25,7 +29,9 @@ class _BerandaState extends State<Beranda> {
                 IconButton(
                   icon: Icon(Icons.arrow_back_ios),
                   color: Colors.white,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pop(MaterialPageRoute(builder: (context) => LoginPage()));
+                  },
                 ),
                 Container(
                     width: 125.0,
@@ -52,14 +58,14 @@ class _BerandaState extends State<Beranda> {
             padding: EdgeInsets.only(left: 40.0),
             child: Row(
               children: <Widget>[
-                Text('Healthy',
+                Text('Selamat',
                     style: TextStyle(
                         fontFamily: 'Montserrat',
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 25.0)),
                 SizedBox(width: 10.0),
-                Text('Food',
+                Text('Datang',
                     style: TextStyle(
                         fontFamily: 'Montserrat',
                         color: Colors.white,
@@ -83,61 +89,13 @@ class _BerandaState extends State<Beranda> {
                     child: Container(
                         height: MediaQuery.of(context).size.height - 300.0,
                         child: ListView(children: [
-                          _buildFoodItem('assets/plate1.png', 'Salmon bowl', '\$24.00'),
-                          _buildFoodItem('assets/plate2.png', 'Spring bowl', '\$22.00'),
-                          _buildFoodItem('assets/plate6.png', 'Avocado bowl', '\$26.00'),
-                          _buildFoodItem('assets/plate5.png', 'Berry bowl', '\$24.00')
+                          _buildIcon('assets/uk.png', '   Bahasa Inggris',
+                              '    English Language'),
+                          _buildIcon('assets/arab.png', '   Bahasa Arab',
+                              '               اللغة العربية'),
+                          _buildIcon('assets/hp.png', '   Tutorial',
+                              '    Learning Path')
                         ]))),
-                    Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Container(
-                      height: 65.0,
-                      width: 60.0,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            color: Colors.grey,
-                            style: BorderStyle.solid,
-                            width: 1.0),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Center(
-                        child: Icon(Icons.search, color: Colors.black),
-                      ),
-                    ),
-                    Container(
-                      height: 65.0,
-                      width: 60.0,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            color: Colors.grey,
-                            style: BorderStyle.solid,
-                            width: 1.0),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Center(
-                        child: Icon(Icons.shopping_basket, color: Colors.black),
-                      ),
-                    ),
-                    Container(
-                      height: 65.0,
-                      width: 120.0,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.grey,
-                              style: BorderStyle.solid,
-                              width: 1.0),
-                          borderRadius: BorderRadius.circular(10.0),
-                          color: Color(0xFF1C1428)),
-                      child: Center(
-                          child: Text('Checkout',
-                              style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  color: Colors.white,
-                                  fontSize: 15.0))),
-                    )
-                  ],
-                )
               ],
             ),
           )
@@ -146,62 +104,183 @@ class _BerandaState extends State<Beranda> {
     );
   }
 
-  Widget _buildFoodItem(String imgPath, String foodName, String price) {
+  mediaQueryHeightPercentage(double percentage) =>
+      (MediaQuery.of(context).size.height / 100) * percentage;
+
+  mediaQueryWidthPercentage(double percentage) =>
+      (MediaQuery.of(context).size.width / 100) * percentage;
+
+  _bottomNavigationBar() => BottomNavigationBar(
+    currentIndex: _selectedPage,
+    onTap: (selection) {
+      setState(() {
+        _selectedPage = selection;
+      });
+    },
+    items: [
+      BottomNavigationBarItem(
+        icon: Icon(
+          FontAwesomeIcons.facebookMessenger,
+          color: _selectedPage == 0 ? Colors.black : Colors.grey[500],
+        ),
+        title: Text(
+          'Messages',
+          style: TextStyle(
+            color: _selectedPage == 0 ? Colors.black : Colors.grey[500],
+          ),
+        ),
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(
+          FontAwesomeIcons.solidBell,
+          color: _selectedPage == 1 ? Colors.black : Colors.grey[500],
+        ),
+        title: Text(
+          'Notifications',
+          style: TextStyle(
+            color: _selectedPage == 1 ? Colors.black : Colors.grey[500],
+          ),
+        ),
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(
+          FontAwesomeIcons.houseUser,
+          color: Colors.amberAccent[700],
+        ),
+        title: Text(
+          'Home',
+          style: TextStyle(
+            color: Colors.amberAccent[700],
+          ),
+        ),
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(
+          FontAwesomeIcons.solidUser,
+          color: _selectedPage == 3 ? Colors.black : Colors.grey[500],
+        ),
+        title: Text(
+          'Profile',
+          style: TextStyle(
+            color: _selectedPage == 3 ? Colors.black : Colors.grey[500],
+          ),
+        ),
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(
+          Icons.settings,
+          color: _selectedPage == 4 ? Colors.black : Colors.grey[500],
+        ),
+        title: Text(
+          'Settings',
+          style: TextStyle(
+            color: _selectedPage == 4 ? Colors.black : Colors.grey[500],
+          ),
+        ),
+      ),
+    ]
+  );
+
+
+  _fab() => AnimatedContainer(
+    duration: Duration(milliseconds: 250),
+    margin: _selectedPage != 2
+        ? EdgeInsets.only(
+            top: mediaQueryHeightPercentage(5),
+            right: _selectedPage > 2 ? mediaQueryWidthPercentage(8) : 0.0,
+            left: _selectedPage < 2 ? mediaQueryWidthPercentage(8) : 0.0,
+          )
+        : EdgeInsets.only(top: mediaQueryHeightPercentage(3)),
+    height: _selectedPage == 2
+        ? mediaQueryHeightPercentage(8)
+        : mediaQueryHeightPercentage(7),
+    width: _selectedPage == 2
+        ? mediaQueryHeightPercentage(8)
+        : mediaQueryHeightPercentage(7),
+    decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(mediaQueryHeightPercentage(2.5)),
+        gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: ColorPalette.appThemedGradientColors),
+        boxShadow: _selectedPage == 2
+            ? [
+                BoxShadow(
+                    color: ColorPalette.appThemedGradientColors[1]
+                        .withOpacity(0.6),
+                    blurRadius: 25,
+                    offset: Offset(0, 10))
+              ]
+            : null),
+    child: InkWell(
+      borderRadius: BorderRadius.circular(mediaQueryHeightPercentage(2.5)),
+      onTap: () {
+        setState(() {
+          _selectedPage = 2;
+        });
+      },
+      child: Icon(
+        FontAwesomeIcons.simplybuilt,
+        size: mediaQueryHeightPercentage(3),
+        color: Colors.white,
+      ),
+    )
+  );
+}
+
+class ColorPalette {
+  static Color backgroundColor = Colors.amberAccent[700];
+
+  static Color boldTitleColor = Colors.grey[900];
+  static Color subtitleColor = Colors.grey[600];
+  static Color subtitleColorLight = Colors.grey[400];
+
+  static List<Color> appThemedGradientColors = [
+    Colors.amber,
+    Colors.yellowAccent,
+  ];
+}
+
+  Widget _buildIcon(String imgPath, String foodName, String price) {
     return Padding(
-        padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+        padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 40.0),
         child: InkWell(
-          onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => Dashboard(heroTag: imgPath, foodName: foodName, foodPrice: price)
-            ));
-          },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Container(
-                child: Row(
-                  children: [
-                    Hero(
+            onTap: () {
+              
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(
+                    child: Row(children: [
+                  Hero(
                       tag: imgPath,
                       child: Image(
-                        image: AssetImage(imgPath),
-                        fit: BoxFit.cover,
-                        height: 75.0,
-                        width: 75.0
-                      )
-                    ),
-                    SizedBox(width: 10.0),
-                    Column(
+                          image: AssetImage(imgPath),
+                          fit: BoxFit.cover,
+                          height: 75.0,
+                          width: 75.0)),
+                  SizedBox(width: 10.0),
+                  Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children:[
-                        Text(
-                          foodName,
-                          style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontSize: 17.0,
-                            fontWeight: FontWeight.bold
-                          )
-                        ),
-                        Text(
-                          price,
-                          style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontSize: 15.0,
-                            color: Colors.grey
-                          )
-                        )
-                      ]
-                    )
-                  ]
-                )
-              ),
-              IconButton(
-                icon: Icon(Icons.add),
-                color: Colors.black,
-                onPressed: () {}
-              )
-            ],
-          )
-        ));
+                      children: [
+                        Text(foodName,
+                            style: TextStyle(
+                                fontFamily: 'Montserrat',
+                                fontSize: 17.0,
+                                fontWeight: FontWeight.bold)),
+                        Text(price,
+                            style: TextStyle(
+                                fontFamily: 'Montserrat',
+                                fontSize: 15.0,
+                                color: Colors.grey))
+                      ])
+                ])),
+                IconButton(
+                    icon: Icon(Icons.arrow_forward_ios),
+                    color: Colors.black,
+                    onPressed: () {})
+              ],
+            )));
   }
-}
+

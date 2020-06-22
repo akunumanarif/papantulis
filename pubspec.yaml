@@ -31,6 +31,8 @@ dev_dependencies:
   flutter_login_facebook: ^0.2.0+1
   firebase_ui: ^1.0.8
   rxdart: ^0.24.1
+  google_fonts_arabic: ^1.1.7
+  font_awesome_flutter: ^8.8.1
 
 
 # For information on the generic Dart part of this file, see the
@@ -48,6 +50,9 @@ flutter:
   assets:
    - assets/facebook.png
    - assets/icon.png
+   - assets/uk.png
+   - assets/arab.png
+   - assets/hp.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
