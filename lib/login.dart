@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './dash.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -8,6 +9,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         resizeToAvoidBottomPadding: false,
         body: Column(
@@ -19,9 +21,7 @@ class _LoginPageState extends State<LoginPage> {
                   Container(
                     width: 270,
                     padding: EdgeInsets.fromLTRB(15.0, 110.0, 0.0, 0.0),
-                    child: Image.asset(
-                      'assets/icon.png'
-                    ),
+                    child: Image.asset('assets/icon.png'),
                   ),
                   Container(
                     padding: EdgeInsets.fromLTRB(153.0, 192.0, 0.0, 0.0),
@@ -84,7 +84,11 @@ class _LoginPageState extends State<LoginPage> {
                         color: Colors.amber,
                         elevation: 7.0,
                         child: GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Beranda(
+                                    )));
+                          },
                           child: Center(
                             child: Text(
                               'LOGIN',
