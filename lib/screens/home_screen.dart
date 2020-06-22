@@ -140,7 +140,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Beranda'),
+        centerTitle: true,
+        elevation: 10,
+        backgroundColor: Colors.amber,
+        title: Text('Bahasa Inggris'),
       ),
       body: _channel != null
           ? NotificationListener<ScrollNotification>(

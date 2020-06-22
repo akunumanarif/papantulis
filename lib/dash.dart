@@ -89,11 +89,11 @@ class _BerandaState extends State<Beranda> {
                     child: Container(
                         height: MediaQuery.of(context).size.height - 300.0,
                         child: ListView(children: [
-                          _buildIcon('assets/uk.png',
+                          _buildIcon(context, 'assets/uk.png',
                                   '   Bahasa Inggris', '    English Language'),
-                          _buildIcon('assets/arab.png', '   Bahasa Arab',
+                          _buildIcon(context, 'assets/arab.png', '   Bahasa Arab',
                               '               اللغة العربية'),
-                          _buildIcon('assets/hp.png', '   Tutorial',
+                          _buildIcon(context, 'assets/hp.png', '   Tutorial',
                               '    Learning Path')
                         ]))),
               ],
@@ -238,9 +238,7 @@ class ColorPalette {
   ];
 }
 
-Widget _buildIcon(String imgPath, String foodName, String price) {
-
-  var context;
+Widget _buildIcon(BuildContext context, String imgPath, String foodName, String price) {
 
   return Padding(
       padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 40.0),
@@ -276,7 +274,7 @@ Widget _buildIcon(String imgPath, String foodName, String price) {
                   icon: Icon(Icons.arrow_forward_ios),
                   color: Colors.black,
                   onPressed: () {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen()));
+                    Navigator.pushNamed(context, '/homeScreen');
                   })
             ],
           )));

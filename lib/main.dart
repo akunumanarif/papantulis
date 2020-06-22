@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:papantulis/screens/home_screen.dart';
 import './homepage.dart';
 
 import 'signup.dart';
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: <String, WidgetBuilder>{
         '/signup': (BuildContext context) => new SignupPage(),
+        '/homeScreen': (BuildContext context) => new HomeScreen(),
       },
       home: new MyHomePage(),
     );
